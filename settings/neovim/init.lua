@@ -141,7 +141,9 @@ vim.opt.undofile = true
 vim.opt.history = 1000
 
 vim.opt.background = "dark"
-vim.cmd("colorscheme torte")
+--vim.cmd("colorscheme torte")
+vim.cmd("colorscheme evening")
+vim.opt.termguicolors = true
 
 vim.opt.laststatus = 2
 
