@@ -150,6 +150,9 @@ vim.opt.laststatus = 2
 vim.opt.backspace = { "indent", "eol", "start" }
 vim.opt.colorcolumn = "100"
 
+-- Forbidden mouse
+vim.opt.mouse = ""
+
 -- =========================================================
 -- Keymaps (optional but useful)
 -- =========================================================
