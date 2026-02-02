@@ -25,24 +25,29 @@ require("lazy").setup({
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
       require("minuet").setup({
-        provider = "gemini",
-        provider_options = {
-          gemini = {
-            -- defaults from the plugin; you can change model if you want
-            model = "gemini-2.0-flash",
-            api_key = "GEMINI_API_KEY", -- reads env var name, not the literal key
-            stream = true,
-            -- Recommended: cap output tokens and disable thinking for speed (esp. 2.5)
-            optional = {
-              generationConfig = {
-                maxOutputTokens = 256,
-                thinkingConfig = { thinkingBudget = 0 },
+      provider = "openai_compatible",
+      provider_options = {
+        openai_compatible = {
+          api_key = "OPENROUTER_API_KEY", -- env var name, not the key itself
+          end_point = "https://openrouter.ai/api/v1/chat/completions",
+          model = "google/gemini-2.5-flash",
+          name = "OpenRouter",
+          stream = true,
+          optional = {
+            max_tokens = 56,
+            top_p = 0.9,
+
+            -- OpenRouter-specific routing hints
+            -- NOTE: this must be under `extra_body` for OpenAI-compatible APIs
+            extra_body = {
+              provider = {
+                sort = "throughput",
               },
-              -- (Optional) you can add safetySettings if needed
             },
           },
         },
-      })
+      },
+    })
     end,
   },
 
